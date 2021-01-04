@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="//db.onlinewebfonts.com/c/5d31f7e418680fc65e031bd05a7fa996?family=Dense" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    
+    <style>
+      *{ scroll-behavior: smooth;}
+       .bg-dark-custom{ 
+         background-color: #202020;
+         background-size: cover;
+         position: relative;
+       }
+       .bg-light-custom{ 
+         background-color: #f7f7f7;
+         background-size: cover;
+         position: relative;
+       }
+       .bg-dark-custom .wave{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        z-index: 1;
+      }
+      #About{
+        position: relative;
+        z-index: 2;
+        
+      }
+      #About .wave2{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        left: 0;
+        z-index: 1;
+      }
+       #proj-btn{ 
+        position: absolute;
+        z-index: 100; }       
+
+       /*text*/
+       .icon-size{ font-size: 5vw;}
+       .text-skyblue{ color: #34c8ff;}
+       .text-Montserrat{ font-family: Montserrat;}
+       .text-Dense{ font-family: Dense;}
+       .line-height-1{ line-height: 1.0;}
+       .subhead-font{ font-size: 5vw;}
+       .subhead-h4-font{ font-size: 2.5vw;}
+       .text-description{ font-size: 2vw;}
+       .two-em{ font-size: 1.25em;}
+
+       #Portfolio{ 
+         position: relative;
+         z-index: 2;
+         overflow-y: hidden;
+       }
+
+       /*HOVER*/
+       .myCard-content{
+         border-radius: 5px;
+         position: relative;
+         width: 90%;
+         max-width: 400px;
+         margin: auto;
+         overflow: hidden;
+       }
+
+       .myCard-content .content-overlay{
+        background: rgba(0,0,0,0.7);
+        position: absolute;
+        height: 99%; width: 100%;
+        left: 0; top: 0; bottom: 0; right: 0;
+        opacity: 0;
+        -webkit-transition: all 0.4s ease-in-out 0s;
+        -moz-transition: all 0.4s ease-in-out 0s;
+        transition: all 0.4s ease-in-out 0s;
+       }
+       .myCard-content:hover .content-overlay{ opacity: 1; cursor: pointer; }
+       .content-img{ width: 100%;}      
+       .content-details{
+        position: absolute;
+        text-align: center;
+        padding-left: 1em;
+        padding-right: 1em;
+        width: 100%; top: 50%;
+        left: 50%;
+        opacity: 0;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        -webkit-transition: all 0.3s ease-in-out 0s;
+        -moz-transition: all 0.3s ease-in-out 0s;
+        transition: all 0.3s ease-in-out 0s;
+       }
+       .myCard-content:hover .content-details{
+        top: 50%;
+        left: 50%;
+        opacity: 1;
+        cursor: pointer;
+       }
+       .fadeInBottom{ top: 80% ; }
+
+       /* MEDIA QUERIES */
+       /* DESKTOPS */
+       @media(min-width: 1483px){
+        #intro-box{ top: 25%; }
+        #job{ font-size: 4vw; }
+        #proj-btn { top: 30%;}
+       }
+       @media(min-width: 1382px) and (max-width: 1482){
+        #intro-box{ top: 50%; }
+        #job{ font-size: 5vw; }
+        #proj-btn { top: 25%;}
+       }
+       @media(min-width: 1281px) and (max-width: 1382){
+        #intro-box{ top: 25%; }
+        #job{ font-size: 4vw; }
+        #proj-btn { top: 25%;}
+       }
+       /* LAPTOPS & DESKTOPS */
+       @media(min-width: 1025px) and (max-width: 1280px){
+        #intro-box{ top: 28%; }
+        #job{ font-size: 4vw; }
+        #proj-btn { top: 25%;}
+       }
+       /* TABLETS & IPADS (portrait) & others */
+       @media(min-width: 481px) and (max-width: 1024px){
+        #intro-box{ top: 30%; }
+        #job{ font-size: 4vw; }
+       }
+       @media(min-width: 768px) and (max-width: 1024px){
+        #proj-btn { top: 20%;}
+       }
+       /* TABLETS & IPADS (landscape)*/
+       @media(min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
+        #intro-box{ top: 30%; }
+        #job{ font-size: 4vw; }
+       }
+       @media(min-width: 481px) and (max-width: 767px){
+        #intro-box{ top: 28%; }
+       }
+       @media(min-width: 683px) and (max-width: 767px){
+        #proj-btn { top: 16%;}
+       }
+       @media(min-width: 582px) and (max-width: 682px){
+        #proj-btn { top: 14%;}
+       }
+       @media(min-width: 481px) and (max-width: 581px){
+        #proj-btn { top: 12%;}
+       }
+       /* LOW RESOLUTION TABLETS, MOBILES (Landscape) */
+       @media(min-width: 481px) and (max-width: 767px) and (orientation: landscape){
+        #intro-box{ top: 28%; }
+       }
+       @media(min-width: 683px) and (max-width: 767px) and (orientation: landscape){
+        #proj-btn { top: 21%;}
+       }
+       @media(min-width: 582px) and (max-width: 682px) and (orientation: landscape){
+        #proj-btn { top: 18%;}
+       }
+       @media(min-width: 481px) and (max-width: 581px) and (orientation: landscape){
+        #proj-btn { top: 17%;}
+       }
+       /* SMARTPHONES */
+       @media(min-width: 320px) and (max-width: 480px){
+        #intro-box{ top: 30%; }
+        #proj-btn { top: 10%;}
+       }
+    </style>
+
+    <!--SCRIPTS-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+    <title>Julia</title>
+
+</head>
+<body class="bg-light-custom">
+  <!--Navbar-->
+  <div class="bg-dark-custom">
+    <header class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+          <a class="navbar-brand" href="#">
+            <img src="https://drive.google.com/uc?export=download&id=1zxUIYpJFddkRdElXwome2G8299rezWnI" alt="logo" style="width: 100px;">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item mx-3">
+                  <a class="nav-link" href="#Portfolio">Portfolio</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="nav-link" href="#About">About</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="nav-link" href="#Contact">Contact</a>
+              </li>
+            </ul>
+  
+          </div>
+        </nav>
+    </header>
+
+    <!--MAIN SECTION-->
+    <section id="main-section" class="d-flex justify-content-center vh-100 mb-0">
+
+      <div id="intro-box" class="mx-auto" style="position: relative;">
+
+        <h1 id="intro" style="font-size: 9vw;" class="text-white text-center text-Montserrat m-0 line-height-1">Hi! I'm <span class="text-skyblue">Julia</span>.</h1>
+
+        <p id="job" class="text-warning text-center text-Dense line-height-1"></p>
+
+        <div class="w-100">
+          <a id="proj-btn" href="#Projects" data-aos="fade-up" data-aos-delay="300" class="btn btn-primary text-Montserrat col-6 offset-3" style="font-size: 1.5vw;">See projects</a>
+        </div>
+
+      </div>    
+    </section>
+    <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f7f7f7" fill-opacity="1" d="M0,64L34.3,74.7C68.6,85,137,107,206,133.3C274.3,160,343,192,411,213.3C480,235,549,245,617,229.3C685.7,213,754,171,823,154.7C891.4,139,960,149,1029,176C1097.1,203,1166,245,1234,245.3C1302.9,245,1371,203,1406,181.3L1440,160L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
+  </div>
+
+  <!--PORTFOLIO-->
+  <section id="Portfolio" class="container mt-0 mb-5 mx-auto h-auto">
+
+    <h3 class="text-center my-lg-5 my-md-3 text-Montserrat subhead-font" data-aos="fade-up">Skills</h3>
+    <div id="Languages">
+
+      <h4 class="subhead-h4-font text-center" data-aos="fade-up">Web Development</h4>
+
+      <div class="row container mx-auto mt-lg-2 mt-md-1 mb-lg-5 mb-md-3 w-50" data-aos="fade-right">
+        <div class="col-lg-3 col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2">
+          <i class="fab fa-html5 icon-size" data-toggle="tooltip" data-placement="bottom" title="HTML 5"></i>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2">
+          <i class="fab fa-css3 icon-size" data-toggle="tooltip" data-placement="bottom" title="CSS 3"></i>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2">
+          <i class="fab fa-js icon-size" data-toggle="tooltip" data-placement="bottom" title="JavaScript"></i>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2">
+          <i class="fab fa-php icon-size" data-toggle="tooltip" data-placement="bottom" title="PHP"></i>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2">
+          <i class="fab fa-bootstrap icon-size" data-toggle="tooltip" data-placement="bottom" title="Bootstrap"></i>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2">
+          <i class="fab fa-laravel icon-size" data-toggle="tooltip" data-placement="bottom" title="Laravel"></i>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2">
+          <i class="fab fa-vuejs icon-size" data-toggle="tooltip" data-placement="bottom" title="Vue JS"></i>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2">
+          <i class="fab fa-java icon-size" data-toggle="tooltip" data-placement="bottom" title="Java"></i>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 offset-lg-0 offset-md-0 offset-sm-3 text-center my-lg-5 my-md-3 my-sm-2">
+          <i class="fab fa-python icon-size" data-toggle="tooltip" data-placement="bottom" title="Python"></i>
+        </div> 
+      </div>
+
+      <h4 class="subhead-h4-font text-center mt-md-3 mt-sm-2" data-aos="fade-up">Design</h4>
+      <div class="row container mx-auto mt-lg-2 mt-md-1 mb-lg-5 mb-md-3 w-50" data-aos="fade-right">
+        <div class="col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2">
+          <span class="iconify icon-size" data-icon="cib:adobe-photoshop" data-inline="false"></span>
+        </div>
+
+        <div class="col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2">
+          <span class="iconify icon-size" data-icon="cib:adobe-illustrator" data-inline="false"></span>
+        </div>
+
+        <div class="col-md-4 col-sm-6 text-center my-lg-5 my-md-3 my-sm-2 offset-lg-0  offset-md-0 offset-sm-3">
+          <span class="iconify icon-size" data-icon="cib:adobe-after-effects" data-inline="false"></span>
+        </div>
+      </div>      
+
+    </div>
+
+    <div class="m-auto w-75">
+      <hr class="my-5">
+    </div>
+    
+
+    <div id="Projects" class="p-5 position-relative">
+      <h3 class="text-center my-lg-5 my-md-3 text-Montserrat subhead-font" data-aos="fade-up">My Projects</h3>
+      <div style="position: relative;">
+        <div id="Proj" class="row justify-content-around text-dense my-lg-5 my-md-3 position-relative">
+          <div class="col-lg-4 col-md-6 col-sm-12 myCard my-1" data-aos="fade-right" data-aos-delay="250">
+            <div class="myCard-content shadow">
+              <div class="content-overlay"></div>
+              <img src="https://drive.google.com/uc?export=download&id=1ytHaQHdNxrMTtHDrJ4SA8AmhtkTvWTuk" alt="project 1 here" class="content-img">
+              <div class="content-details fadeInBottom">
+                <h5 class="text-white">Starlight Finances</h5>
+                <p class="text-white">Web app that manages classroom finances</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-lg-4 col-md-6 col-sm-12 myCard my-1" data-aos="fade-right" data-aos-delay="200">
+            <div class="myCard-content shadow">
+              <div class="content-overlay"></div>
+              <img src="https://drive.google.com/uc?export=download&id=1PD6uiYyzHmukRCm_2vnGYZJr9Bp394Az" alt="project 1 here" class="content-img">
+              <div class="content-details fadeInBottom">
+                <h5 class="text-white">Tech Ideas</h5>
+                <p class="text-white">Blog site for tech enthusiasts</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-lg-4 col-md-6 col-sm-12 myCard my-1" data-aos="fade-right">
+            <div class="myCard-content shadow">
+              <div class="content-overlay"></div>
+              <img src="https://drive.google.com/uc?export=download&id=13tjngqjL0B77EoJYmK7h0M20_1T4tzmA" alt="project 1 here" class="content-img">
+              <div class="content-details fadeInBottom">
+                <h5 class="text-white">PC2U</h5>
+                <p class="text-white">An e-commerce website that sells computer parts and offers repair service</p>
+              </div>
+            </div>
+          </div>   
+          
+          <div class="col-lg-4 col-md-6 col-sm-12 myCard my-1" data-aos="fade-right" data-aos-delay="250">
+            <div class="myCard-content shadow">
+              <div class="content-overlay"></div>
+              <img src="https://drive.google.com/uc?export=download&id=1dcAzGkQJp2iswS9hU1yNbtvEoNkWPoxC" alt="project 1 here" class="content-img">
+              <div class="content-details fadeInBottom">
+                <h5 class="text-white">Aila's 18th Birthday</h5>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-lg-4 col-md-6 col-sm-12 myCard my-1" data-aos="fade-right" data-aos-delay="200">
+            <div class="myCard-content shadow">
+              <div class="content-overlay"></div>
+              <img src="https://drive.google.com/uc?export=download&id=1lBaQmtkLu9dZncfDx_3hN7o8FP8JPbBD" alt="project 1 here" class="content-img">
+              <div class="content-details fadeInBottom">
+                <h5 class="text-white">Birthday Card</h5>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-lg-4 col-md-6 col-sm-12 myCard my-1" data-aos="fade-right">
+            <div class="myCard-content shadow">
+              <div class="content-overlay"></div>
+              <img src="https://drive.google.com/uc?export=download&id=1aemo-yxRNzxDNxQI4av1FtUbzuExxT-a" alt="project 1 here" class="content-img">
+              <div class="content-details fadeInBottom">
+                <h5 class="text-white">Bookmark</h5>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    
+    </div>
+    
+  </section>
+  
+  <div class="mx-auto w-75">
+    <hr class="my-5">
+  </div>
+
+
+  <!-- ABOUT -->
+  <section id="About" class="mt-lg-5 mt-md-5 mt-sm-3 mb-0 vh-100 position-relative">
+    <h3 class="text-center mt-lg-5 mt-md-3 mb-lg-3 mb-md-2 text-Montserrat subhead-font mb-0" data-aos="fade-up">About</h3>
+    <div class="row container mx-auto mb-lg-3 mb-md-3 mb-sm-2 p-5 position-relative" data-aos="fade-right">
+      <div class="col-md-6 d-flex justify-content-center pb-5">
+        <div class="d-flex justify-content-center pb-lg-5 pb-md-3 pb-sm-2">
+          <img src="https://drive.google.com/uc?export=download&id=1U6mc8oWHBaGGgpwXp3gAPRpvMscg3ZPp" alt="#" class="rounded-circle img-fluid w-75 shadow">
+        </div>
+              
+      </div>
+
+      <div class="col-md-6">
+        <p class="text-justify text-Dense text-description">Hey! I'm Julia De Jesus, an Information Technology student at Polytechnic University of the Philippines - Sto. Tomas Branch. As an aspiring IT professional, I hone my skills whenever I'm given the chance. It has been a year since I started to watch tutorials, read programming references and practice coding everyday.  Back in high school, I learned the basics of design and had the chance apply the knowledge and experiences I gained. </p>
+      </div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="wave2">
+      <path fill="#202020" fill-opacity="1" d="M0,160L40,154.7C80,149,160,139,240,133.3C320,128,400,128,480,149.3C560,171,640,213,720,213.3C800,213,880,171,960,138.7C1040,107,1120,85,1200,101.3C1280,117,1360,171,1400,197.3L1440,224L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
+    </svg>
+  </section>
+
+  <!-- CONTACT AND FOOTER -->
+  <footer id="foot" class="bg-dark-custom vh-75">
+
+    <div class="row mx-auto">
+  
+      <section id="Contact" class="col-md-6 col-sm-12 mb-lg-5 mb-md-3 order-lg-1 order-md-1 order-sm-1">
+        <h4 class="text-white text-center mb-md-2 text-Montserrat subhead-h4-font">Get in touch</h4>
+        <div class="col-8 offset-2">
+          <form action="#" id="contact-form" class="form">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" name="firstname" id="firstname" placeholder="First name" class="form-control" required>
+                  
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" name="lastname" id="lastname" placeholder="Last name" class="form-control" required>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" id="email" placeholder="Email" class="form-control" required>
+              
+            </div>
+      
+            <div class="form-group">
+             <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Your message" required></textarea>
+  
+            </div>
+  
+            <input type="submit" value="Send Message" class="btn btn-primary btn-block" id="send-btn">
+          </form>
+        </div>
+      </section>
+
+      <section id="footerInfo" class="text-white col-md-3 col-sm-12 order-lg-0 order-md-0 order-sm-5">
+        <div id="footer-menu" class="d-flex flex-column mb-lg-5 mb-md-5 mb-sm-2">
+          <div class="d-flex justify-content-center align-items-center">
+            <img src="https://drive.google.com/uc?export=download&id=1zxUIYpJFddkRdElXwome2G8299rezWnI" style="width:500px; overflow:hidden;" alt="##" class="m-2" >
+          </div>
+          
+
+          <div id="socmed-links" class="container">
+            <div class="mx-auto">
+              <ul class="list-unstyled row text-center container mx-auto">
+                <li class="col-3 text-description">
+                  <a href="https://www.facebook.com/julia.dejesus.589" class="text-white">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+
+                <li class="col-3 text-description">
+                  <a href="https://twitter.com/coder_juliavdj" class="text-white">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+
+                <li class="col-3 text-description">
+                  <a href="https://github.com/dejesusJulia?tab=repositories" class="text-white">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </li>
+
+                <li class="col-3 text-description">
+                  <a href="https://www.linkedin.com/in/julia-de-jesus-712775202/" class="text-white">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+
+          <p class="text-center text-muted">Julia De Jesus &copy; <span id="year"></span></p>
+        </div>
+      </section>
+
+      <section class="text-white col-md-3 col-sm-12 order-lg-0 order-md-0 order-sm-4">
+        <div class="d-flex justify-content-center my-lg-5 my-md-5 my-sm-2">
+          <ul class="list-unstyled mx-auto ">
+            <li class="my-3 text-muted">
+              <h4>Navigate</h4>
+            </li>
+            <li class="my-3 ">
+              <a href="#main-section" class="text-white">Home</a>
+            </li>
+            <li class="my-3 ">
+              <a href="#Portfolio" class="text-white">Portfolio</a>
+            </li>
+            <li class="my-3">
+              <a href="#About" class="text-white">About</a>
+            </li>
+          </ul>
+        </div>
+
+      </section>
+    </div>  
+
+  </footer>
+    
+  <script>
+    // Animate on scroll
+    AOS.init();
+
+    // Typing Library
+    var typed2 = new Typed('#job', {
+    strings: ["&#60;web developer&#47;graphic designer&#62;"],
+    typeSpeed: 40,
+    backSpeed: 0,
+    loop: false
+    });
+
+    // Activate tooltip 
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  });
+    
+    // Get year
+    document.querySelector('#year').innerHTML = new Date().getFullYear();
+
+  </script>
+    
+</body>
+</html>
